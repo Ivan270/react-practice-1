@@ -1,26 +1,18 @@
 import React, { useState } from 'react';
 
-const SavingsForm = (props) => {
-	const [currentSavings, setCurrentSavings] = useState('');
-	const [yearlyContribution, setYearlyContribution] = useState('');
-	const [expectedReturn, setExpectedReturn] = useState('');
-	const [duration, setDuration] = useState('');
+const initialUserInput = {
+	'current-savings': 10000,
+	'yearly-contribution': 1200,
+	'expected-return': 7,
+	duration: 10,
+};
 
-	const [userInput, setUserInput] = useState({
-		'current-savings': 10000,
-		'yearly-contribution': 1200,
-		'expected-return': 7,
-		duration: 10,
-	});
+const SavingsForm = (props) => {
+	const [userInput, setUserInput] = useState(initialUserInput);
 
 	// Reset form function
 	const resetFormHandler = () => {
-		setUserInput({
-			'current-savings': 10000,
-			'yearly-contribution': 1200,
-			'expected-return': 7,
-			duration: 10,
-		});
+		setUserInput(initialUserInput);
 	};
 
 	// Managing changing inputs
@@ -37,12 +29,6 @@ const SavingsForm = (props) => {
 	// Submits data in an object and passes it to parent component
 	const submitHandler = (event) => {
 		event.preventDefault();
-		const userInput = {
-			'current-savings': Number(currentSavings),
-			'yearly-contribution': Number(yearlyContribution),
-			'expected-return': Number(expectedReturn),
-			duration: Number(duration),
-		};
 		props.onSubmitSavings(userInput);
 		event.target.reset();
 	};
@@ -56,6 +42,7 @@ const SavingsForm = (props) => {
 						onChange={(event) =>
 							inputChangeHandler('current-savings', event.target.value)
 						}
+						value={userInput['current-savings']}
 						type="number"
 						id="current-savings"
 					/>
@@ -66,6 +53,7 @@ const SavingsForm = (props) => {
 						onChange={(event) =>
 							inputChangeHandler('yearly-contribution', event.target.value)
 						}
+						value={userInput['yearly-contribution']}
 						type="number"
 						id="yearly-contribution"
 					/>
@@ -80,6 +68,7 @@ const SavingsForm = (props) => {
 						onChange={(event) =>
 							inputChangeHandler('expected-return', event.target.value)
 						}
+						value={userInput['expected-return']}
 						type="number"
 						id="expected-return"
 					/>
@@ -90,6 +79,7 @@ const SavingsForm = (props) => {
 						onChange={(event) =>
 							inputChangeHandler('duration', event.target.value)
 						}
+						value={userInput.duration}
 						type="number"
 						id="duration"
 					/>
