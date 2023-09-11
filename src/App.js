@@ -7,8 +7,6 @@ function App() {
 	const [data, setData] = useState([]);
 	const calculateHandler = (userInput) => {
 		// triggered when form is submitted
-		// You might not directly want to bind it to the submit event on the form though...
-
 		const yearlyData = []; // per-year results
 
 		let currentSavings = +userInput['current-savings'];

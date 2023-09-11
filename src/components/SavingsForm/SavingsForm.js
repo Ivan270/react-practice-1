@@ -15,18 +15,19 @@ const SavingsForm = (props) => {
 	};
 
 	// Managing changing inputs
-	const currentChangeHandler = (event) => {
-		setCurrentSavings(event.target.value);
-	};
-	const yearlyContributionChangeHandler = (event) => {
-		setYearlyContribution(event.target.value);
-	};
-	const expectedReturnChangeHandler = (event) => {
-		setExpectedReturn(event.target.value);
-	};
-	const durationChangeHandler = (event) => {
-		setDuration(event.target.value);
-	};
+	const inputChangeHandler = (input, value) => {};
+	// const currentChangeHandler = (event) => {
+	// 	setCurrentSavings(event.target.value);
+	// };
+	// const yearlyContributionChangeHandler = (event) => {
+	// 	setYearlyContribution(event.target.value);
+	// };
+	// const expectedReturnChangeHandler = (event) => {
+	// 	setExpectedReturn(event.target.value);
+	// };
+	// const durationChangeHandler = (event) => {
+	// 	setDuration(event.target.value);
+	// };
 
 	// Submits data in an object and passes it to parent component
 	const submitHandler = (event) => {
@@ -47,7 +48,9 @@ const SavingsForm = (props) => {
 				<p>
 					<label htmlFor="current-savings">Current Savings ($)</label>
 					<input
-						onChange={currentChangeHandler}
+						onChange={(event) =>
+							inputChangeHandler('current-savings', event.target.value)
+						}
 						type="number"
 						id="current-savings"
 					/>
@@ -55,7 +58,9 @@ const SavingsForm = (props) => {
 				<p>
 					<label htmlFor="yearly-contribution">Yearly Savings ($)</label>
 					<input
-						onChange={yearlyContributionChangeHandler}
+						onChange={(event) =>
+							inputChangeHandler('yearly-contribution', event.target.value)
+						}
 						type="number"
 						id="yearly-contribution"
 					/>
@@ -67,14 +72,22 @@ const SavingsForm = (props) => {
 						Expected Interest (%, per year)
 					</label>
 					<input
-						onChange={expectedReturnChangeHandler}
+						onChange={(event) =>
+							inputChangeHandler('expected-return', event.target.value)
+						}
 						type="number"
 						id="expected-return"
 					/>
 				</p>
 				<p>
 					<label htmlFor="duration">Investment Duration (years)</label>
-					<input onChange={durationChangeHandler} type="number" id="duration" />
+					<input
+						onChange={(event) =>
+							inputChangeHandler('duration', event.target.value)
+						}
+						type="number"
+						id="duration"
+					/>
 				</p>
 			</div>
 			<p className="actions">
