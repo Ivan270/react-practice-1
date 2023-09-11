@@ -6,28 +6,33 @@ const SavingsForm = (props) => {
 	const [expectedReturn, setExpectedReturn] = useState('');
 	const [duration, setDuration] = useState('');
 
+	const [userInput, setUserInput] = useState({
+		'current-savings': 10000,
+		'yearly-contribution': 1200,
+		'expected-return': 7,
+		duration: 10,
+	});
+
 	// Reset form function
-	const resetFormHandler = (event) => {
-		setCurrentSavings('');
-		setYearlyContribution('');
-		setExpectedReturn('');
-		setDuration('');
+	const resetFormHandler = () => {
+		setUserInput({
+			'current-savings': 10000,
+			'yearly-contribution': 1200,
+			'expected-return': 7,
+			duration: 10,
+		});
 	};
 
 	// Managing changing inputs
-	const inputChangeHandler = (input, value) => {};
-	// const currentChangeHandler = (event) => {
-	// 	setCurrentSavings(event.target.value);
-	// };
-	// const yearlyContributionChangeHandler = (event) => {
-	// 	setYearlyContribution(event.target.value);
-	// };
-	// const expectedReturnChangeHandler = (event) => {
-	// 	setExpectedReturn(event.target.value);
-	// };
-	// const durationChangeHandler = (event) => {
-	// 	setDuration(event.target.value);
-	// };
+	const inputChangeHandler = (input, value) => {
+		setUserInput((prevInput) => {
+			return {
+				...prevInput,
+				// dynamically accessing a property
+				[input]: value,
+			};
+		});
+	};
 
 	// Submits data in an object and passes it to parent component
 	const submitHandler = (event) => {
