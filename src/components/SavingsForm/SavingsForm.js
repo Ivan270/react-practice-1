@@ -21,8 +21,8 @@ const SavingsForm = (props) => {
 		setUserInput((prevInput) => {
 			return {
 				...prevInput,
-				// dynamically accessing a property
-				[input]: value,
+				// dynamically accessing a property, + transforms it into a number
+				[input]: +value,
 			};
 		});
 	};
