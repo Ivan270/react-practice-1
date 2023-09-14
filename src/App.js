@@ -4,10 +4,13 @@ import SavingsForm from './components/SavingsForm/SavingsForm';
 import SavingsTable from './components/SavingsTable/SavingsTable';
 
 function App() {
-	const [data, setData] = useState([]);
+	const [results, setResults] = useState([]);
+	const [userInput, setUserInput] = useState(null);
+
 	const calculateHandler = (userInput) => {
 		// triggered when form is submitted
 		const yearlyData = []; // per-year results
+		setUserInput(userInput);
 
 		let currentSavings = +userInput['current-savings'];
 		const yearlyContribution = +userInput['yearly-contribution'];
@@ -25,13 +28,18 @@ function App() {
 				yearlyContribution: yearlyContribution,
 			});
 		}
-		// do something with yearlyData ...
-		setData(yearlyData);
+
+		setResults(yearlyData);
 	};
 	// fallback text if no data
 	let content = <p style={{ textAlign: 'center' }}>No information found.</p>;
-	if (data.length > 0) {
-		content = <SavingsTable data={data} />;
+	if (results.length > 0) {
+		content = (
+			<SavingsTable
+				data={results}
+				initialInvestment={userInput['current-savings']}
+			/>
+		);
 	}
 
 	return (

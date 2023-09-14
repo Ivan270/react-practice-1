@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './SavingsTable.module.css';
 
 const SavingsTable = (props) => {
-	console.log(props.data);
 	const formatter = new Intl.NumberFormat('en-US', {
 		style: 'currency',
 		currency: 'USD',
@@ -27,8 +26,18 @@ const SavingsTable = (props) => {
 							<td>{year.year}</td>
 							<td>{formatter.format(year.savingsEndOfYear)}</td>
 							<td>{parseFloat(year.yearlyInterest).toFixed(2)}</td>
-							<td>TOTAL INTEREST GAINED</td>
-							<td>TOTAL INVESTED CAPITAL</td>
+							<td>
+								{formatter.format(
+									year.savingsEndOfYear -
+										props.initialInvestment -
+										year.yearlyContribution * year.year
+								)}
+							</td>
+							<td>
+								{formatter.format(
+									props.initialInvestment + year.yearlyContribution * year.year
+								)}
+							</td>
 						</tr>
 					</tbody>
 				);
